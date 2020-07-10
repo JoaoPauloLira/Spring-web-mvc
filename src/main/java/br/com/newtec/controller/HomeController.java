@@ -37,7 +37,7 @@ public class HomeController {
 		usuario.setEmail("joao.p.lira@gmail.com");
 		usuario.setSenha("123456");
 		usuario.setNome("João Paulo");
-		usuario.setRoles(Arrays.asList( new Role("ADMIN")));
+		usuario.setRoles(Arrays.asList( new Role("ROLE_ADMIN")));
 		
 		usuarioDao.save(usuario);
 		

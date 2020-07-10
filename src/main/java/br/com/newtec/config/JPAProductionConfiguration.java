@@ -22,8 +22,6 @@ public class JPAProductionConfiguration {
 	private String password;
 	private String url;
 	
-	
-	
 	public JPAProductionConfiguration() throws URISyntaxException {
 		uri = new URI(environment.getProperty("DATABAS_URL"));
 		user = uri.getUserInfo().split(":")[0];
@@ -34,11 +32,11 @@ public class JPAProductionConfiguration {
 	@Bean
 	private DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
 
 		dataSource.setUsername(user);
 		dataSource.setPassword(password);
 		dataSource.setUrl(url);
+		dataSource.setDriverClassName("org.postgresql.Driver");
 		
 		return dataSource;
 	}

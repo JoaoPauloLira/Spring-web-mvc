@@ -17,13 +17,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JPAConfiguration {
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties jpaProperties) {
 
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		
 		factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		factoryBean.setDataSource(dataSource);
-		factoryBean.setJpaProperties(jpaProperties());
+		factoryBean.setJpaProperties(jpaProperties);
 		factoryBean.setPackagesToScan("br.com.newtec.model");
 		
 		return factoryBean;
@@ -40,6 +40,8 @@ public class JPAConfiguration {
 		return dataSource;
 	}
 	
+	@Bean
+	@Profile("dev")
 	private Properties jpaProperties() {
 		Properties jpaProperties = new Properties();
 		jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");

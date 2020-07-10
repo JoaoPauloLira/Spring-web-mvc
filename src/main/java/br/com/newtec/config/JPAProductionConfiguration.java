@@ -22,7 +22,8 @@ public class JPAProductionConfiguration {
 	private String password;
 	private String url;
 	
-	public JPAProductionConfiguration() throws URISyntaxException {
+	
+	private void Init() throws URISyntaxException{
 		uri = new URI(environment.getProperty("DATABAS_URL"));
 		user = uri.getUserInfo().split(":")[0];
 		password = uri.getUserInfo().split(":")[1];
@@ -30,9 +31,9 @@ public class JPAProductionConfiguration {
 	}
 
 	@Bean
-	private DataSource dataSource() {
+	private DataSource dataSource() throws URISyntaxException {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
+		Init();
 		dataSource.setUsername(user);
 		dataSource.setPassword(password);
 		dataSource.setUrl(url);

@@ -28,5 +28,9 @@ public class UsuarioLoginDao implements UserDetailsService {
 		
 		return usuarios.get(0);
 	}
+	
+	public void save(Usuario usuario) {
+		manager.persist(usuario);
+	}
 		
 }

@@ -15,7 +15,7 @@ public class UsuarioDao {
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public void save(Usuario usuario) {
-		manager.persist(usuario);
-	}
+//	public void save(Usuario usuario) {
+//		manager.persist(usuario);
+//	}
 }

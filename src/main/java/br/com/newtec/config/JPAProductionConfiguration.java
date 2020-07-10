@@ -17,23 +17,16 @@ public class JPAProductionConfiguration {
 	
 	@Autowired
 	private Environment environment;
-	private URI uri;
-	private String user;
-	private String password;
-	private String url;
-	
-	
-	private void Init() throws URISyntaxException{
-		uri = new URI(environment.getProperty("DATABASE_URL"));
-		user = uri.getUserInfo().split(":")[0];
-		password = uri.getUserInfo().split(":")[1];
-		url = "jdbc:mysql://"+uri.getHost()+":"+uri.getPort()+uri.getPath();
-	}
 
 	@Bean
 	private DataSource dataSource() throws URISyntaxException {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		Init();
+		
+		URI uri = new URI(environment.getProperty("DATABASE_URL"));
+		String user = uri.getUserInfo().split(":")[0];
+		String password = uri.getUserInfo().split(":")[1];
+		String url = "jdbc:mysql://"+uri.getHost()+":"+uri.getPort()+uri.getPath();
+		
 		dataSource.setUsername(user);
 		dataSource.setPassword(password);
 		dataSource.setUrl(url);

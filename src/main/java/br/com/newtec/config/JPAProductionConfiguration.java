@@ -25,7 +25,7 @@ public class JPAProductionConfiguration {
 		URI uri = new URI(environment.getProperty("DATABASE_URL"));
 		String user = uri.getUserInfo().split(":")[0];
 		String password = uri.getUserInfo().split(":")[1];
-		String url = "jdbc:mysql://"+uri.getHost()+":"+uri.getPort()+uri.getPath();
+		String url = "jdbc:postgresql://"+uri.getHost()+":"+uri.getPort()+uri.getPath();
 		
 		dataSource.setUsername(user);
 		dataSource.setPassword(password);

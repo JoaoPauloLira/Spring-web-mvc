@@ -24,7 +24,7 @@ public class JPAProductionConfiguration {
 	
 	
 	private void Init() throws URISyntaxException{
-		uri = new URI(environment.getProperty("DATABAS_URL"));
+		uri = new URI(environment.getProperty("DATABASE_URL"));
 		user = uri.getUserInfo().split(":")[0];
 		password = uri.getUserInfo().split(":")[1];
 		url = "jdbc:mysql://"+uri.getHost()+":"+uri.getPort()+uri.getPath();

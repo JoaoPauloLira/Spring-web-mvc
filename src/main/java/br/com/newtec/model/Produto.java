@@ -10,12 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import br.com.newtec.model.enums.Situacao;
 
@@ -33,7 +31,10 @@ public class Produto implements Serializable {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataUltimaAlteracao;
 	
+	@NotNull(message = "{field.required.produto.descricao}")
+	@Size(min = 5, message = "Valor menos que 5")
 	private String descricao;
+	
 	private String unidadeMedida;
 	private String codigobarras;
 	private String sessaoProduto;

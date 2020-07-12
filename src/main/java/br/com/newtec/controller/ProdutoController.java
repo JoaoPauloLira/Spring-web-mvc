@@ -38,10 +38,10 @@ public class ProdutoController {
 	@Autowired
 	private SendEmail send;
 	
-	@InitBinder
-	public void InitBinder(WebDataBinder dataBinder) {
-		dataBinder.addValidators(new ProdutoValidation());
-	}
+//	@InitBinder
+//	public void InitBinder(WebDataBinder dataBinder) {
+//		dataBinder.addValidators(new ProdutoValidation());
+//	}
 	
 	@RequestMapping("/cadastro")
 	@CacheEvict(value="IndexCache",allEntries = true)
@@ -50,7 +50,7 @@ public class ProdutoController {
 		System.out.println("Cadastro de produtos");
 		ModelAndView view = new ModelAndView("cadastroProduto");
 		view.addObject("tiposPreco", TipoPreco.values());
-		
+
 		
 		return view;
 	}
@@ -62,24 +62,17 @@ public class ProdutoController {
 							   RedirectAttributes attributes
 									  ) {
 		
-		
-		System.err.println(imgPath.getOriginalFilename());
+		if(result.hasErrors()) {
+			return new ModelAndView("cadastroProduto");
+		}
 		
 		String nameImg = fileSave.SaveFale("FotosProdutos", imgPath);
-		
-		System.out.println(produto);
-		
-		if(result.hasErrors())
-			CadastroProduto();
-		
-		System.out.println("Salvar de produtos");
 		
 		produto.setImgPath(nameImg);
 		
 		produtoDao.salvar(produto);
 		
 		send.enviarEmail("Produto: "+produto.getDescricao()+" cadastrado com sucesso!", "joao.p.lira@gmail.com", "O Produto foi cadastrado com sucesso!");
-		
 		
 		ModelAndView view = new ModelAndView("redirect:/produtos");
 		attributes.addFlashAttribute("sucesso","Produto Cadastrado com Sucesso");

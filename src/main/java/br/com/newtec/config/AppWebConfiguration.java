@@ -78,15 +78,15 @@ public class AppWebConfiguration implements WebMvcConfigurer {
 		return resolver;
 	}
 
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
-		source.setBasename("/WEB-INF/messagens");
-		source.setDefaultEncoding("UTP-8");
-		source.setCacheSeconds(1);
-
-		return source;
-	}
+//	@Bean
+//	public MessageSource messageSource() {
+//		ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+//		source.setBasename("/WEB-INF/messages");
+//		source.setDefaultEncoding("UTP-8");
+//		source.setCacheSeconds(1);
+//
+//		return source;
+//	}
 
 	@Bean
 	public FormattingConversionService mvcConversionService() {
@@ -169,7 +169,7 @@ public class AppWebConfiguration implements WebMvcConfigurer {
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 		mailSender.setUsername("newtec.testes.jp@gmail.com");
-		mailSender.setPassword("jpp123456");
+		mailSender.setPassword("***********");
 		
 		//configuração para ter uma conexão segura
 		Properties mailProperties = new Properties();

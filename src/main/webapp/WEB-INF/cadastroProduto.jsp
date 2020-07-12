@@ -1,3 +1,4 @@
+<%@page import="br.com.newtec.model.Produto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -23,9 +24,16 @@
 		<hr>
 
 		<h3>Cadastro de Produtos</h3>
-
+	
+		<%
+		
+		Produto produto = new Produto();
+		produto.setDescricao("teste");
+		
+		%>
+	
 		<hr>
-
+		
 		<form:form action="/LojaWeb/produtos" method="post"
 			enctype="multipart/form-data">
 
@@ -55,11 +63,14 @@
 							placeholder="">
 					</div>
 					<div class="col-md-4">
-						<label for="descricao">Descrição</label> <input type="text"
-							class="form-control" id="descricao" name=descricao
-							placeholder="descrição do produto">
-						<form:errors path="descricao" />
+						<label for="descricao">Descrição</label> 
+						<input type="text" class="form-control" id="descricao" name=descricao placeholder="descrição do produto">
+						
 					</div>
+					
+					<form:errors path="descricao" />
+						<form:errors path="produto.descricao" />
+					
 					<div class="col-md-2">
 						<label for="UnidadeMedida">Unidade</label> <select
 							class="form-control" id="UnidadeMedida" name="UnidadeMedida">
